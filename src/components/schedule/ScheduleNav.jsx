@@ -1,30 +1,33 @@
-import PropTypes from 'prop-types'
-import { Calendar, BookOpen } from "lucide-react"
+import PropTypes from "prop-types";
+import { Calendar, BookOpen } from "lucide-react";
 
 export function ScheduleNav({ activeTab, onTabChange }) {
   return (
     <>
-      <aside className="w-full md:w-64 bg-white p-4 hidden md:block flex flex-col h-[calc(100vh-4rem)] rounded-lg">
+      <aside className="w-full md:w-52 bg-white p-4 hidden md:block flex flex-col h-[calc(100vh-4rem)] rounded-lg">
         <div>
-          <h1 className="text-2xl font-bold mb-4">Jadwal Kuliah</h1>
-          <nav>
+          <nav className="space-y-1">
             <button
-              className={`w-full text-left p-2 mb-2 rounded ${
-                activeTab === "KELAS WAJIB" ? "bg-blue-500 text-white" : "hover:bg-gray-200"
+              className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                activeTab === "KELAS WAJIB" 
+                  ? "bg-blue-500 text-white font-medium" 
+                  : "text-gray-600 hover:bg-gray-100"
               }`}
               onClick={() => onTabChange("KELAS WAJIB")}>
               Matkul Wajib
             </button>
             <button
-              className={`w-full text-left p-2 mb-2 rounded ${
-                activeTab === "KELAS PILIHAN" ? "bg-blue-500 text-white" : "hover:bg-gray-200"
+              className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                activeTab === "KELAS PILIHAN" 
+                  ? "bg-blue-500 text-white font-medium" 
+                  : "text-gray-600 hover:bg-gray-100"
               }`}
               onClick={() => onTabChange("KELAS PILIHAN")}>
               Matkul Pilihan
             </button>
           </nav>
         </div>
-        <footer className="fixed bottom-4 left-4 text-sm text-gray-500 w-56 bg-white p-2 rounded-lg shadow-lg text-center">
+        <footer className="fixed bottom-4 left-4 text-sm text-gray-500 w-46 bg-white p-2 rounded-lg shadow-lg text-center">
           Built with ❤️ by <a href="https://github.com/0xtbug" target="_blank" rel="noopener noreferrer">tubagusnm</a>
         </footer>
       </aside>
@@ -48,10 +51,10 @@ export function ScheduleNav({ activeTab, onTabChange }) {
         </button>
       </nav>
     </>
-  )
+  );
 }
 
 ScheduleNav.propTypes = {
   activeTab: PropTypes.string.isRequired,
   onTabChange: PropTypes.func.isRequired,
-} 
+};
