@@ -10,7 +10,18 @@ export default function StudySchedule() {
       <ScheduleNav activeTab={activeTab} onTabChange={setActiveTab} />
       
       <main className="flex-1 p-4 overflow-auto">
-        <h2 className="text-2xl font-bold mb-4 md:hidden">Jadwal Kuliah</h2>
+        <div className="flex items-center justify-between mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 tracking-tight">
+            Jadwal Kuliah
+            <span className="block text-sm font-medium text-gray-500 mt-1">
+              {activeTab === "KELAS WAJIB" ? "Mata Kuliah Wajib" : "Mata Kuliah Pilihan"}
+            </span>
+          </h2>
+          <div className="text-sm text-gray-500 hidden md:block">
+            {filteredSchedule.length} Mata Kuliah
+          </div>
+        </div>
+
         <div className="grid gap-4 pb-16 md:pb-0">
           {filteredSchedule.map((item) => (
             <ScheduleCard
