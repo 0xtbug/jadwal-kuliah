@@ -91,7 +91,21 @@ export const scheduleData = [
     room: "Kelas 4.76 - 2",                      // Room location
     department: "IF",                            // Department code
   },
-  // Add more courses...
+  // For optional courses with multiple sessions
+  {
+    id: "121",
+    subject: "WIRELESS SENSOR NETWORK",
+    group: "KELAS PILIHAN",
+    session: "SESI 1",                           // Session identifier (for optional courses)
+    // ... other fields
+  },
+  {
+    id: "121B",                                  // Different ID for alternative session
+    subject: "WIRELESS SENSOR NETWORK",
+    group: "KELAS PILIHAN",
+    session: "SESI 2",                           // Alternative session
+    // ... other fields
+  }
 ];
 
 // Color scheme for different days
@@ -102,6 +116,17 @@ export const dayColors = {
   KAMIS: "bg-purple-100 border-l-4 border-purple-500",
   "JUM'AT": "bg-pink-100 border-l-4 border-pink-500",
   SABTU: "bg-orange-100 border-l-4 border-orange-500",
+};
+
+// Day ordering for sorting
+export const dayOrder = {
+  SENIN: 1,
+  SELASA: 2,
+  RABU: 3,
+  KAMIS: 4,
+  "JUM'AT": 5,
+  SABTU: 6,
+  MINGGU: 7
 };
 ```
 
@@ -116,9 +141,19 @@ export const dayColors = {
 | subject | string | Course name | "METODOLOGI PENELITIAN" |
 | credits | number | Credit units | 3 |
 | lecturer | string | Lecturer name | "Didi Juardi, S.T., M.Kom." |
-| group | string | Course type | "KELAS WAJIB" |
+| group | string | Course type | "KELAS WAJIB" or "KELAS PILIHAN" |
 | room | string | Room location | "Kelas 4.76 - 2" |
 | department | string | Department | "IF" |
+| session | string | Session number (optional courses) | "SESI 1" or "SESI 2" |
+
+### Multiple Sessions for Optional Courses
+
+Optional courses ("KELAS PILIHAN") can have multiple sessions. To add an alternative session:
+
+1. Create a new entry with a different ID (e.g., append 'B' to the original ID)
+2. Keep the same course details (code, subject, credits, etc.)
+3. Set different day/time/room as needed
+4. Add the session identifier ("SESI 1", "SESI 2")
 
 ## 📱 PWA Features
 
