@@ -70,6 +70,20 @@ export const scheduleData = [
     group: "KELAS PILIHAN",
     room: "Kelas 4.76 - 2",
     department: "IF",
+    session: "SESI 1"
+  },
+  {
+    id: "121B",
+    day: "SABTU",
+    time: "10.00-12.30",
+    code: "FIK61557",
+    subject: "WIRELESS SENSOR NETWORK",
+    credits: 3,
+    lecturer: "E. Haodudin Nurkifli, S.T., M.Cs., Ph.D.",
+    group: "KELAS PILIHAN",
+    room: "Kelas 4.76 - 2",
+    department: "IF",
+    session: "SESI 2"
   },
   {
     id: "122",
