@@ -16,7 +16,7 @@ export function ScheduleCard({ item, isPinned, onTogglePin }) {
         scale: isPinned ? 1.02 : 1,
         boxShadow: isPinned 
           ? "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)"
-          : "none"
+          : "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)"
       });
       return;
     }
@@ -48,7 +48,7 @@ export function ScheduleCard({ item, isPinned, onTogglePin }) {
         opacity: 1,
         duration: 0.3,
         ease: "power2.inOut",
-        boxShadow: "none"
+        boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)"
       });
     }
     
