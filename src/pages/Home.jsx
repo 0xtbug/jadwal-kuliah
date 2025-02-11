@@ -1,11 +1,9 @@
 import { ScheduleCard } from "@/components/schedule/ScheduleCard"
 import { ScheduleNav } from "@/components/schedule/ScheduleNav"
 import { useSchedule } from "@/hooks/useSchedule"
-import { usePinnedCourses } from "@/hooks/usePinnedCourses"
 
 export default function StudySchedule() {
-  const { activeTab, setActiveTab, filteredSchedule } = useSchedule()
-  const [pinnedCourses, togglePin] = usePinnedCourses()
+  const { activeTab, setActiveTab, filteredSchedule, pinnedCourses, handlePinToggle } = useSchedule()
 
   return (
     <div className="flex flex-col md:flex-row h-screen bg-gray-100">
@@ -19,7 +17,7 @@ export default function StudySchedule() {
               key={item.id}
               item={item}
               isPinned={pinnedCourses.includes(item.id)}
-              onTogglePin={togglePin}
+              onTogglePin={handlePinToggle}
             />
           ))}
         </div>

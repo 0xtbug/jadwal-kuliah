@@ -2,19 +2,97 @@ import PropTypes from "prop-types";
 import { Calendar, Clock, BookOpen, User, MapPin, Pin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { dayColors } from "@/config/scheduleData";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 export function ScheduleCard({ item, isPinned, onTogglePin }) {
+  const cardRef = useRef(null);
+  const isAnimatingRef = useRef(false);
+
+  useEffect(() => {
+    if (!isAnimatingRef.current) {
+      gsap.set(cardRef.current, {
+        y: isPinned ? -10 : 0,
+        scale: isPinned ? 1.02 : 1,
+        boxShadow: isPinned 
+          ? "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)"
+          : "none"
+      });
+      return;
+    }
+    
+    if (isPinned) {
+      gsap.to(cardRef.current, {
+        y: 20,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          gsap.set(cardRef.current, { y: -100, opacity: 0 });
+          gsap.to(cardRef.current, {
+            y: -10,
+            opacity: 1,
+            scale: 1.02,
+            duration: 0.3,
+            delay: 0.1,
+            ease: "power2.out",
+            boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)"
+          });
+        }
+      });
+    } else {
+      gsap.to(cardRef.current, {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power2.inOut",
+        boxShadow: "none"
+      });
+    }
+    
+    isAnimatingRef.current = false;
+  }, [isPinned]);
+
+  const handlePinClick = () => {
+    isAnimatingRef.current = true;
+    
+    if (!isPinned) {
+      gsap.to(cardRef.current, {
+        y: 20,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          onTogglePin(item.id);
+        }
+      });
+    } else {
+      gsap.to(cardRef.current, {
+        y: -20,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          onTogglePin(item.id);
+        }
+      });
+    }
+  };
+
   return (
     <Card
+      ref={cardRef}
       className={`${
         dayColors[item.day]
-      } overflow-hidden relative transform transition-all duration-300 ease-in-out ${
-        isPinned ? "scale-[1.02] shadow-lg" : ""
-      }`}
+      } overflow-hidden relative transform transition-colors duration-300 ease-in-out`}
     >
       {item.group === "KELAS PILIHAN" && (
         <button
-          onClick={() => onTogglePin(item.id)}
+          onClick={handlePinClick}
           className="absolute top-2 right-2 p-1 hover:bg-black/5 rounded-full transition-colors"
           title={isPinned ? "Lepas pin matkul" : "Pin matkul"}
         >
