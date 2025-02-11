@@ -25,6 +25,7 @@ A Progressive Web App (PWA) for managing university class schedules. Built with 
 - 📱 Responsive design for mobile and desktop
 - 🔄 Offline support
 - ⚡ Fast and lightweight
+- 💫 GSAP animations for smooth interactions
 
 ## 🛠️ Tech Stack
 
@@ -33,6 +34,7 @@ A Progressive Web App (PWA) for managing university class schedules. Built with 
 - Tailwind CSS
 - shadcn/ui (Component Library)
 - Lucide Icons
+- GSAP (Animations)
 - React Router DOM
 - Workbox (PWA)
 
